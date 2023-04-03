@@ -46,3 +46,6 @@ VS Code will be used as IDE
 7. Then run yarn to check all packages are (already) there
 8. Then run yarn start to start all our mfe
 9. Application is reachable on http://localhost:9000
+
+# Running screenshot
+![image](https://user-images.githubusercontent.com/38427185/229594967-bd006ccf-327e-43af-8798-dead4395b6be.png)
