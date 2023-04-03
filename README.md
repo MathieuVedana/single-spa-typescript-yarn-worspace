@@ -41,7 +41,7 @@ VS Code will be used as IDE
 2. Clone this repo
 3. Install Node v18.12.0 and then Yarn v3.5
 4. Install vsCode
-5. Open root folder in VS Code
+5. Open root folder in VS Code and install recommended extension(s) (mandatory)
 6. Open a shell in root folder, run node -v and yarn -v to check your are pointing ot the right versions
 7. Then run yarn to check all packages are (already) there
 8. Then run yarn start to start all our mfe
