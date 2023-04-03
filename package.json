@@ -1,0 +1,17 @@
+{
+  "name": "yarn_workspace_with-sspa",
+  "packageManager": "yarn@3.5.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "eslint": "^8.37.0",
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.3"
+  },
+  "scripts": {
+    "start": "yarn workspaces foreach -p -v -i run start"
+  }
+}
