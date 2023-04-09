@@ -1,7 +1,6 @@
 {
   "name": "@mma/app1",
   "packageManager": "yarn@3.5.0",
-  "type": "module",
   "scripts": {
     "start": "webpack serve --port 9001",
     "start:standalone": "webpack serve --env standalone",
