@@ -1,5 +1,6 @@
 {
   "name": "@mma/utils2",
+  "packageManager": "yarn@3.5.0",
   "scripts": {
     "start": "webpack serve --port 9003",
     "start:standalone": "webpack serve --env standalone",
