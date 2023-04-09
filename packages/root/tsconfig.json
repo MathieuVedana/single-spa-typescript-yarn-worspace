@@ -1,9 +1,10 @@
 {
-  "extends": "ts-config-single-spa",
+  "extends": "../../tsconfig-base.json",
   "files": ["src/mma-root-config.ts"],
   "compilerOptions": {
     "declarationDir": "dist"
   },
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test*"]
+  "exclude": ["src/**/*.test*"],
+  "references": []
 }

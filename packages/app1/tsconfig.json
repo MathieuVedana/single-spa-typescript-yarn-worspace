@@ -1,10 +1,18 @@
 {
-  "extends": "ts-config-single-spa",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "declarationDir": "dist"
   },
   "files": ["src/mma-app1.tsx"],
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test*"]
+  "exclude": ["src/**/*.test*"],
+  "references": [
+    {
+      "path": "../utils1"
+    },
+    {
+      "path": "../utils2"
+    }
+  ]
 }

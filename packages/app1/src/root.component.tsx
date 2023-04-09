@@ -1,9 +1,7 @@
-// import { toUpperCaseText } from '../../utils1/src/mma-utils1';
-// import { HelloComponent } from '../../utils2/src/mma-utils2';
 import { toUpperCaseText } from "@mma/utils1";
 import { HelloComponent } from "@mma/utils2";
 
-export default function Root(props) {
+export default function Root(props: any) {
   return (
     <div>
       <section>
