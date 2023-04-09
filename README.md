@@ -1,4 +1,6 @@
-> :warning: **At this commit, vscode is happy to see modules and updates of modules coming from other @mma packages**
+> :warning: **At this commit, modifying a fonction in a package will only rebuild this package which won't make the update visible to other packages**
+> :warning: **At this commit, Webpack and babel are happy to build the project using @mma packages**
+> :warning: **Previous commit cc4ecaa3b1e86096c2a35871297d5de52469a378, vscode is happy to see modules and updates of modules coming from other @mma packages**
 
 # Introduction
 
