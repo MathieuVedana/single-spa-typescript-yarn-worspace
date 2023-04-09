@@ -3,7 +3,7 @@
   "extends": "ts-config-single-spa",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "ESNext"],
-    "module": "node16",
+    "module": "ES2022",
     "target": "ES2022",
     "declaration": true,
     "declarationMap": true,

@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "yarn workspaces foreach -p -v -i run start",
-    "tsc": "yarn workspaces foreach run tsc"
+    "tsc": "yarn workspaces foreach run tsc -b"
   },
   "engines": {
     "node": ">=18",

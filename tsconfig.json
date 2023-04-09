@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "references": [
+    {
+      "path": "packages/app1"
+    },
+    {
+      "path": "packages/utils1"
+    },
+    {
+      "path": "packages/utils2"
+    },
+    {
+      "path": "packages/root"
+    }
+  ]
+}
