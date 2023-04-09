@@ -1,3 +1,5 @@
+> :warning: **At this commit, vscode is happy to see modules and updates of modules coming from other @mma packages**
+
 # Introduction
 
 This repo under construction is a sample to build a single-spa project using typescript, yarn workspace and vscode.
@@ -6,7 +8,7 @@ This repo under construction is a sample to build a single-spa project using typ
 
 It will be helpfull for anybody annoyed by typescript that is not working as we all think it should, I mean without effort ;)
 
-# Receipe
+# Recipe
 
 ## Single-spa
 
