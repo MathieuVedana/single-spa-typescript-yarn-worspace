@@ -1,10 +1,4 @@
-> :warning: **At this commit, adding a fonction in a package rebuild this package. Rebuilding the package is visible to other packages as far as I can see because other packages are emitting assets containing that package declaration d.ts d.ts.map and .tsbuildinfo. Unfortunately, the added function when used in other package raise typescript errors in console but the application still run fine itself. So wy babel (is it bael?) is not seing these updates?**
-
-> Previous commit, modifying a fonction in a package will only rebuild this package which won't make the update visible to other packages
-
-> Previous commit, Webpack and babel are happy to build the project using @mma packages
-
-> Previous commit, vscode is happy to see modules and updates of modules coming from other @mma packages
+> :warning: **At this commit, starting the app with webpack raises typescript errors in app1 because it imports utils1 and utils2 packages and fails to find them**
 
 # Introduction
 
