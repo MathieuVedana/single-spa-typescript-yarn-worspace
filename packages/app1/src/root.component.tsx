@@ -1,6 +1,6 @@
-import { returnText14, toLowerCaseText } from "@mma/utils1";
+import { anotherText, toLowerCaseText } from "@mma/utils1";
 import { toUpperCaseText } from "@mma/utils1";
-import { HelloComponent } from "@mma/utils2";
+import { HelloComponent, HelloComponentV2 } from "@mma/utils2";
 
 export default function Root(props: any) {
   return (
@@ -17,10 +17,11 @@ export default function Root(props: any) {
             `${props.name} is calling toLowerCaseText with this text!`
           )}
         </div>
-        <div>{returnText14()}</div>
+        <div>{anotherText()}</div>
       </section>
       <section>
         <HelloComponent />
+        <HelloComponentV2 />
       </section>
     </div>
   );
