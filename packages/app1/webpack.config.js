@@ -1,12 +1,23 @@
-const { mergeWithRules } = require("webpack-merge");
+const { mergeWithRules, mergeWithCustomize } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
-const merge = mergeWithRules({
+const mergeRules = mergeWithRules({
   module: {
     rules: {
       test: "match",
       use: "replace",
     },
+  },
+});
+
+// Overkilled usage of mergeWithCustomize
+const removeForkTsCheckerWebpackPlugin = mergeWithCustomize({
+  customizeArray(a, b, key) {
+    if (key === "plugins") {
+      return a.filter((plugin) => {
+        return plugin.constructor?.name !== "ForkTsCheckerWebpackPlugin";
+      });
+    }
   },
 });
 
@@ -18,7 +29,7 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
-  return merge(defaultConfig, {
+  let config = mergeRules(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
     module: {
       rules: [
@@ -41,4 +52,8 @@ module.exports = (webpackConfigEnv, argv) => {
       ],
     },
   });
+
+  config = removeForkTsCheckerWebpackPlugin(config, { plugins: [] });
+
+  return config;
 };
