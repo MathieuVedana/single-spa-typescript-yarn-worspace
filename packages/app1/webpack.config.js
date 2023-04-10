@@ -1,24 +1,13 @@
-const { mergeWithRules, mergeWithCustomize } = require("webpack-merge");
+const { mergeWithCustomize, unique } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
-const mergeRules = mergeWithRules({
-  module: {
-    rules: {
-      test: "match",
-      use: "replace",
-    },
-  },
-});
-
-// Overkilled usage of mergeWithCustomize
-const removeForkTsCheckerWebpackPlugin = mergeWithCustomize({
-  customizeArray(a, b, key) {
-    if (key === "plugins") {
-      return a.filter((plugin) => {
-        return plugin.constructor?.name !== "ForkTsCheckerWebpackPlugin";
-      });
-    }
-  },
+const mergePlugins = mergeWithCustomize({
+  customizeArray: unique(
+    "plugins",
+    ["ForkTsCheckerWebpackPlugin"],
+    (plugin) => plugin.constructor && plugin.constructor.name
+  ),
 });
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -29,31 +18,16 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
-  let config = mergeRules(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
-    module: {
-      rules: [
-        {
-          test: /\.(js|ts)x?$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: "babel-loader",
-            },
-            {
-              loader: "ts-loader",
-              options: {
-                projectReferences: true,
-                transpileOnly: true,
-              },
-            },
-          ],
+  const config = mergePlugins(defaultConfig, {
+    plugins: [
+      new ForkTsCheckerWebpackPlugin({
+        typescript: {
+          mode: "readonly", // Assuming that your production build use tsc
+          build: true, // This enables your app to build also dependencies (references), otherwise you will have typescript errors because your project won't be aware of your reference project
         },
-      ],
-    },
+      }),
+    ],
   });
-
-  config = removeForkTsCheckerWebpackPlugin(config, { plugins: [] });
 
   return config;
 };

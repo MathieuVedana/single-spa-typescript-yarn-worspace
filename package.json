@@ -14,7 +14,11 @@
   },
   "scripts": {
     "start": "yarn workspaces foreach -p -v -i run start",
-    "tsc": "yarn workspaces foreach run tsc -b"
+    "build": "yarn build-utils && yarn build-apps && yarn build-root",
+    "build-utils": "yarn workspaces foreach -p -v -i --include '@mma/utils*' run build",
+    "build-apps": "yarn workspaces foreach -p -v -i --include '@mma/app*' run build",
+    "build-root": "yarn workspace '@mma/root-config' run build",
+    "tsc:clean": "rm -rf packages/**/*.tsbuildinfo packages/**/dist"
   },
   "engines": {
     "node": ">=18",

@@ -1,13 +1,13 @@
-const { mergeWithRules } = require("webpack-merge");
+const { mergeWithCustomize, unique } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
-const merge = mergeWithRules({
-  module: {
-    rules: {
-      test: "match",
-      use: "replace",
-    },
-  },
+const mergePlugins = mergeWithCustomize({
+  customizeArray: unique(
+    "plugins",
+    ["ForkTsCheckerWebpackPlugin"],
+    (plugin) => plugin.constructor && plugin.constructor.name
+  ),
 });
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -18,27 +18,11 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
-  return merge(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
-    module: {
-      rules: [
-        {
-          test: /\.(js|ts)x?$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: "babel-loader",
-            },
-            {
-              loader: "ts-loader",
-              options: {
-                projectReferences: true,
-                transpileOnly: true,
-              },
-            },
-          ],
-        },
-      ],
-    },
+  const config = mergePlugins(defaultConfig, {
+    plugins: [
+      new ForkTsCheckerWebpackPlugin({}), // Overrides the conf mode: "write-references" from singleSpaDefaults. We use in-memory readonly definition, assuming you run your production build with tsc.
+    ],
   });
+
+  return config;
 };
