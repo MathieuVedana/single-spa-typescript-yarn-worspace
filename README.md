@@ -1,18 +1,26 @@
-> :warning: **At this commit, adding a fonction in a package rebuild this package. Rebuilding the package is visible to other packages as far as I can see because other packages are emitting assets containing that package declaration d.ts d.ts.map and .tsbuildinfo. Unfortunately, the added function when used in other package raise typescript errors in console but the application still run fine itself. So wy babel (is it bael?) is not seing these updates?**
-
-> Previous commit, modifying a fonction in a package will only rebuild this package which won't make the update visible to other packages
-
-> Previous commit, Webpack and babel are happy to build the project using @mma packages
-
-> Previous commit, vscode is happy to see modules and updates of modules coming from other @mma packages
-
 # Introduction
 
-This repo under construction is a sample to build a single-spa project using typescript, yarn workspace and vscode.
-
-> Why typescript is annoying us but not webpack :(
+This repo is a sample to bootstrap a running single-spa project using typescript, yarn workspace and vscode.
 
 It will be helpfull for anybody annoyed by typescript that is not working as we all think it should, I mean without effort ;)
+
+Currently you can run the app (see bellow) and live modify a package by adding/editing/removing a function/component in utils (see below) and use it from app1 (see bellow). Of course, VScode is also working fine and do not raise any typescript errors and perform auto-completion.
+
+To extend this idea, all packages that want to use another pacakge shall be declared in its tsconfig.json / references.
+In addition its fork-ts-checker-webpack-plugin configuration shall change to set build parameter to true : 
+```
+      new ForkTsCheckerWebpackPlugin({
+        typescript: {
+          mode: "readonly", // Assuming that your production build use tsc
+          build: true, // This enables your app to build also dependencies (references), otherwise you will have typescript errors because your project won't be aware of your reference project
+        },
+      }),
+```     
+
+# Next steps
+Faster reloads using [react fast-refresh](https://github.com/pmmmwh/react-refresh-webpack-plugin)
+
+Automatic CSS prefix by workspace name to avoid css collision 
 
 # Recipe
 
