@@ -10,10 +10,6 @@
     "emitDeclarationOnly": true,
     "strict": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".", // This must be specified if "paths" is.
-    "paths": {
-      "packages/*": ["packages/*"]
-    }
+    "forceConsistentCasingInFileNames": true
   }
 }
