@@ -17,8 +17,12 @@ In addition its fork-ts-checker-webpack-plugin configuration shall change to set
       }),
 ```     
 
-# Next steps
+# Work in progress
 Faster reloads using [react fast-refresh](https://github.com/pmmmwh/react-refresh-webpack-plugin)
+=> This seems ok on app1 when modifying app1
+=> But if I trigger a modification on utils1, then all the app is reloading which I would like to avoid by reloading only utils1.
+
+# Next steps
 
 Automatic CSS prefix by workspace name to avoid css collision 
 
